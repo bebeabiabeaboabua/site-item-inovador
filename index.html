@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nome do Produto — Inovação que faz sentido</title>
+  <meta name="description" content="Página inicial simples para vender um item inovador (placeholders para imagens e textos)." />
+
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --card: rgba(255,255,255,.06);
+      --card-2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --line: rgba(255,255,255,.12);
+      --accent: #7c5cff; /* cor principal (troca se quiser) */
+      --accent-2: #25f4ee; /* detalhe */
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(124,92,255,.35), transparent 55%),
+        radial-gradient(700px 500px at 85% 30%, rgba(37,244,238,.20), transparent 55%),
+        radial-gradient(700px 600px at 55% 90%, rgba(255,120,180,.18), transparent 60%),
+        var(--bg);
+      line-height: 1.5;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .container{
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: rgba(11,13,18,.65);
+      border-bottom: 1px solid var(--line);
+      z-index: 20;
+    }
+    .nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 0;
+    }
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .logo{
+      width: 36px; height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 26px rgba(124,92,255,.25);
+    }
+    nav ul{
+      list-style: none;
+      display: flex;
+      gap: 16px;
+      margin: 0; padding: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    nav a:hover{ color: var(--text); }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      cursor: pointer;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #0b0d12;
+      box-shadow: 0 16px 40px rgba(124,92,255,.22);
+    }
+    .btn.primary:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 44px 0 22px;
+    }
+    .hero-grid{
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .hero-card{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      inset:-60px -60px auto auto;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,92,255,.35), transparent 60%);
+      transform: rotate(18deg);
+      pointer-events:none;
+    }
+    .kicker{
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(255,255,255,.75);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+    .dot{
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 6px rgba(37,244,238,.12);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -0.6px;
+    }
+    .subtitle{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 54ch;
+    }
+    .cta-row{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 14px;
+    }
+    .trust{
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .trust-item{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,.80);
+    }
+    .trust-item span{
+      display:block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    /* Image placeholder */
+    .media{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-rows: 1fr auto;
+    }
+    .img-ph{
+      position: relative;
+      min-height: 320px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0 10px, rgba(255,255,255,.02) 10px 20px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      text-align:center;
+      color: rgba(255,255,255,.70);
+      font-size: 14px;
+    }
+    .img-ph strong{ color: var(--text); }
+    .media-caption{
+      padding: 14px 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items:center;
+    }
+    .badge{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: rgba(255,255,255,.80);
+      white-space: nowrap;
+    }
+
+    /* Sections */
+    section{
+      padding: 22px 0;
+    }
+    .section-title{
+      font-size: 20px;
+      margin: 0 0 10px;
+      letter-spacing: -0.2px;
+    }
+    .section-sub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    .grid-3{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .card{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .card h3{
+      margin: 10px 0 6px;
+      font-size: 16px;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .icon{
+      width: 38px; height: 38px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(37,244,238,.22));
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    /* Product gallery */
+    .gallery{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .gallery .big, .gallery .small{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .ph{
+      height: 100%;
+      min-height: 220px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      text-align:center;
+      color: rgba(255,255,255,.70);
+      font-size: 14px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0 10px, rgba(255,255,255,.02) 10px 20px);
+    }
+    .stack{
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* Testimonials */
+    .quotes{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    blockquote{
+      margin: 0;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding: 16px;
+      color: rgba(255,255,255,.85);
+    }
+    blockquote p{
+      margin: 0 0 10px;
+      color: rgba(255,255,255,.85);
+      font-size: 14px;
+    }
+    .who{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .avatar{
+      width: 30px; height: 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.08);
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 30px;
+      padding: 22px 0 36px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .foot{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+      justify-content: space-between;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .trust{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: 1fr; }
+      .quotes{ grid-template-columns: 1fr; }
+      nav ul{ display:none; } /* deixa bem simples no mobile */
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#">
+          <div class="logo" aria-hidden="true"></div>
+          <span>[Sua Marca]</span>
+        </a>
+
+        <nav aria-label="Navegação principal">
+          <ul>
+            <li><a href="#beneficios">Benefícios</a></li>
+            <li><a href="#galeria">Fotos</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+          </ul>
+        </nav>
+
+        <a class="btn primary" href="#galeria">Ver o produto</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-card">
+            <div class="kicker"><span class="dot"></span> [Frase curta tipo: “Novo • Edição 2026”]</div>
+
+            <h1>[Nome do Item Inovador] que resolve [problema] em minutos</h1>
+            <p class="subtitle">
+              [Uma descrição de 2–3 linhas explicando o que é, pra quem serve e por que é diferente.
+              Ex: “Feito pra quem quer X sem complicação, com design moderno e uso super simples.”]
+            </p>
+
+            <div class="cta-row">
+              <a class="btn primary" href="#galeria">Quero ver fotos</a>
+              <a class="btn" href="#beneficios">Entender como ajuda</a>
+            </div>
+
+            <div class="trust" aria-label="Destaques rápidos">
+              <div class="trust-item">
+                ✅ [Destaque 1]
+                <span>[microtexto: “ex: funciona sem app / sem fio / sem esforço”]</span>
+              </div>
+              <div class="trust-item">
+                ⚡ [Destaque 2]
+                <span>[microtexto: “ex: resultados rápidos / economia de tempo”]</span>
+              </div>
+              <div class="trust-item">
+                🛡️ [Destaque 3]
+                <span>[microtexto: “ex: material premium / garantia / seguro”]</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="media" aria-label="Imagem principal do produto">
+            <div class="img-ph">
+              <div>
+                <strong>[PLACEHOLDER DE IMAGEM PRINCIPAL]</strong><br/>
+                Troque isso por uma imagem do seu produto.<br/>
+                Dica: use 1200×1200 ou 1600×1200.
+              </div>
+            </div>
+            <div class="media-caption">
+              <span>[Legenda curta tipo: “Foto do produto em uso”]</span>
+              <span class="badge">[Tag: “novo”, “premium”, “eco”]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <section id="beneficios">
+      <div class="container">
+        <h2 class="section-title">Por que esse item é diferente</h2>
+        <p class="section-sub">
+          [Explique em 1 parágrafo curto o “porquê” do produto: o que ele melhora, o que evita, o que torna a vida mais fácil.]
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon" aria-hidden="true"></div>
+            <h3>[Benefício #1]</h3>
+            <p>[Texto curto explicando o benefício. Ex: “Você faz X sem precisar de Y.”]</p>
+          </div>
+
+          <div class="card">
+            <div class="icon" aria-hidden="true"></div>
+            <h3>[Benefício #2]</h3>
+            <p>[Texto curto. Ex: “Economiza tempo porque…”]</p>
+          </div>
+
+          <div class="card">
+            <div class="icon" aria-hidden="true"></div>
+            <h3>[Benefício #3]</h3>
+            <p>[Texto curto. Ex: “Design pensado pra…”]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA / FOTOS -->
+    <section id="galeria">
+      <div class="container">
+        <h2 class="section-title">Fotos do produto</h2>
+        <p class="section-sub">
+          [Aqui você coloca imagens: ângulos diferentes, detalhes e o produto sendo usado.]
+        </p>
+
+        <div class="gallery">
+          <div class="big">
+            <div class="ph">
+              <div>
+                <strong>[PLACEHOLDER FOTO 1 — grande]</strong><br/>
+                [Ex: “Produto em destaque / foto principal”]
+              </div>
+            </div>
+          </div>
+
+          <div class="stack">
+            <div class="small">
+              <div class="ph">
+                <div>
+                  <strong>[PLACEHOLDER FOTO 2]</strong><br/>
+                  [Ex: “Detalhe do material / textura”]
+                </div>
+              </div>
+            </div>
+            <div class="small">
+              <div class="ph">
+                <div>
+                  <strong>[PLACEHOLDER FOTO 3]</strong><br/>
+                  [Ex: “Produto em uso / contexto real”]
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:14px"></div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>[Especificação / diferencial]</h3>
+            <p>[Ex: “Leve, compacto e fácil de levar.”]</p>
+          </div>
+          <div class="card">
+            <h3>[Material / tecnologia]</h3>
+            <p>[Ex: “Feito com material X para durar mais.”]</p>
+          </div>
+          <div class="card">
+            <h3>[Como usar]</h3>
+            <p>[Ex: “1) faça isso, 2) faça aquilo, 3) pronto.”]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos">
+      <div class="container">
+        <h2 class="section-title">O que as pessoas dizem</h2>
+        <p class="section-sub">
+          [Depoimentos aumentam confiança — mesmo se forem placeholders agora.]
+        </p>
+
+        <div class="quotes">
+          <blockquote>
+            <p>“[Depoimento curto e específico. Ex: ‘Eu nunca consegui X, agora ficou bem mais fácil!’]”</p>
+            <div class="who">
+              <div class="avatar" aria-hidden="true"></div>
+              <span>[Nome] • [Cidade/UF]</span>
+            </div>
+          </blockquote>
+
+          <blockquote>
+            <p>“[Depoimento curto. Ex: ‘Chegou rápido e a qualidade é ótima.’]”</p>
+            <div class="who">
+              <div class="avatar" aria-hidden="true"></div>
+              <span>[Nome] • [Cidade/UF]</span>
+            </div>
+          </blockquote>
+
+          <blockquote>
+            <p>“[Depoimento curto. Ex: ‘Usei por X dias e senti diferença em…’]”</p>
+            <div class="who">
+              <div class="avatar" aria-hidden="true"></div>
+              <span>[Nome] • [Cidade/UF]</span>
+            </div>
+          </blockquote>
+        </div>
+
+        <div style="height:16px"></div>
+
+        <div class="hero-card" style="padding:18px;">
+          <h3 style="margin:0 0 6px; font-size:16px;">[Chamada final]</h3>
+          <p style="margin:0; color: var(--muted);">
+            [Frase final: “Pronto pra melhorar seu dia com [Nome do Produto]?”]
+          </p>
+          <div class="cta-row" style="margin-top:12px;">
+            <a class="btn primary" href="#galeria">Ver fotos</a>
+            <a class="btn" href="#">[Botão secundário placeholder]</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <span>© <span id="year">2026</span> [Sua Marca]. Todos os direitos reservados.</span>
+        <span>[Instagram / WhatsApp / E-mail — coloque aqui]</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- (opcional) só pra atualizar o ano automaticamente, não tem funcionalidade de venda -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
